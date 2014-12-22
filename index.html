@@ -1,0 +1,22 @@
+<html ng-app="app">
+<head>
+<title>SpyPal</title>
+<link rel="stylesheet" type="text/css" media="screen" href="css/style.css" />
+<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.3.5/angular.min.js"></script>
+<script src="js/app.js"></script>
+</head>
+<body>
+<div ng-controller="encodeController">
+  <a href="#" ng-click="clearLocalStorage()">Clear local storage</a>
+  <textarea ng-model="keyText" ng-change="doBoth()"></textarea>
+  <select ng-options="a.label for a in alphabetData" ng-model="selectedAlphabet" ng-change="doBoth()">
+  <textarea ng-model="plainText" ng-change="encode(plainText)"></textarea>
+  <div>
+      {{encodedResult}}
+  </div>
+  <textarea ng-model="encodedText" ng-change="decode(encodedText)"></textarea>
+  <div>
+      {{decodedResult}}
+  </div>
+</body>
+</html>
