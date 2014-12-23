@@ -99,10 +99,8 @@ app.controller('encodeController', function encodeController($scope){
 
   $scope.clearLocalStorage = function(){
       window.localStorage.removeItem("keyText");
-      window.localStorage.removeItem("alphabet");
-      window.localStorage.removeItem("alphabetVal");
       window.localStorage.removeItem("alphabetId");
-      alert('Done!');
+      alert('Done!'); //todo
   }
 
   if(window.localStorage.getItem('keyText') === null){
