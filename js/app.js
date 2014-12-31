@@ -10,11 +10,11 @@ app.controller('encodeController', function encodeController($scope){
   $scope.alphabetData = [{
     id: 0,
     label: 'English',
-    value: 'abcdefghijklmnopqrstuvwxyz'
+    value: unescape('abcdefghijklmnopqrstuvwxyz')
   }, {
     id: 1,
     label: 'German',
-    value: 'abcdefghijklmnopqrstuvwxyzäöüß'
+    value: unescape('abcdefghijklmnopqrstuvwxyzäöüß')
   }];
 
   $scope.getAlphabetValue = function(alphabetId){
@@ -56,11 +56,21 @@ app.controller('encodeController', function encodeController($scope){
       }
     }
 
+    if (uniKey.length > alphabet.length){
+      for(var i=0; i<uniKey.length; i++){
+        if (alphabet.indexOf(uniKey.charAt(i)) === -1){
+          equalAlphabet += uniKey.charAt(i);
+        }
+      }
+
+    }
+
     return equalAlphabet;
   }
 
   $scope.encode = function(txt){
     if(txt){
+      txt = txt.toLowerCase();
       var key1 = $scope.unify($scope.keyText.toLowerCase().split(' ').join('')),
           key2 = $scope.equalise(key1, $scope.getAlphabetValue($scope.alphabet).value.toLowerCase().split(' ').join(''));
      
@@ -72,14 +82,15 @@ app.controller('encodeController', function encodeController($scope){
           $scope.encodedResult += key2.charAt(integer);  
         }else{
           $scope.encodedResult += txt.charAt(i);
-        }
-        
+        }        
       }
+
     }
   }
 
   $scope.decode = function(txt){
     if(txt){
+      txt = txt.toLowerCase();
       var key1 = $scope.unify($scope.keyText.toLowerCase().split(' ').join('')),
           key2 = $scope.equalise(key1, $scope.getAlphabetValue($scope.alphabet).value.toLowerCase().split(' ').join(''));
 
@@ -91,9 +102,9 @@ app.controller('encodeController', function encodeController($scope){
           $scope.decodedResult += key1.charAt(integer);  
         }else{
           $scope.decodedResult += txt.charAt(i);
-        }
-        
+        }        
       }
+
     }
   }
 
