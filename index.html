@@ -23,7 +23,7 @@
     </ul>
   </nav>
   <main ng-controller="encodeController">
-    <section ng-class="{'selected': selectedSection == 'encode'}">
+    <section ng-class="{'selected': selectedSection == 'encode' || selectedSection == undefined}">
       <label for="plainText">Enter plain text here:</label>
       <textarea id="plainText" ng-model="plainText" ng-change="encode(plainText)"></textarea>
       <div>
